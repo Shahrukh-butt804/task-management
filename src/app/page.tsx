@@ -39,22 +39,17 @@ const LoginPage = () => {
   return (
     <div className="bg-sky-100 flex justify-center items-center h-screen">
       {/* Left: Image */}
-      <div className="w-1/2 h-screen hidden lg:block">
-        <img
-          src="https://img.freepik.com/fotos-premium/imagen-fondo_910766-187.jpg?w=826"
-          alt="Placeholder"
-          className="object-cover w-full h-full"
-        />
+      <div className="w-1/2 h-screen hidden lg:grid  bg-blue-400  place-content-center">
+        <h1 className="text-2xl font-semibold mb-4">Login As A Parent</h1>
       </div>
 
       {/* Right: Login Form */}
-      <div className="lg:p-36 md:p-52 sm:p-20 p-8 w-full lg:w-1/2">
-        <h1 className="text-2xl font-semibold mb-4">Login As A Parent</h1>
+      <div className="lg:p-36 md:p-52 sm:p-20 p-8 w-full lg:w-1/2 text-gray-700 font-semibold">
         <form onSubmit={handleSubmit}>
           {/* email Input */}
           <div className="mb-4">
             <label htmlFor="email" className="block text-gray-600">
-              email
+              Email
             </label>
             <input
               type="text"
@@ -108,14 +103,14 @@ const LoginPage = () => {
           {/* Login Button */}
           <button
             type="submit"
-            className="bg-red-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full"
+            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full"
           >
             Login
           </button>
         </form>
 
         {/* Sign up Link */}
-        <div className="mt-6 text-green-500 text-center">
+        <div className="mt-6 text-blue-600 text-center">
           <p
             onClick={() => router.push("/signup")}
             className="hover:underline cursor-pointer"
@@ -124,7 +119,7 @@ const LoginPage = () => {
           </p>
         </div>
 
-        <div className="mt-6 text-green-500 text-center">
+        <div className="mt-6 text-blue-600 text-center">
           <p
             onClick={() => router.push("/KidLogin")}
             className="hover:underline cursor-pointer"
