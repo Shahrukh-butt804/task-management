@@ -21,8 +21,18 @@ export const kidSlice = createApi({
     getMyKids: builder.query({
       query: () => "/get-my-kids",
     }),
+
+    kidLogin: builder.mutation({
+      query(body) {
+        return {
+          url: "/kidLogin",
+          method: "POST",
+          body,
+        };
+      },
+    }),
   }),
 });
 
 // Export hooks for usage in functional components
-export const { useAddKidMutation, useGetMyKidsQuery } = kidSlice;
+export const { useAddKidMutation, useGetMyKidsQuery, useKidLoginMutation } = kidSlice;

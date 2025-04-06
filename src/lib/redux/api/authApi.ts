@@ -8,6 +8,7 @@ export const authSlice = createApi({
     credentials: "include",
   }),
   endpoints: (builder) => ({
+
     Login: builder.mutation({
       query(body) {
         return {
@@ -17,6 +18,7 @@ export const authSlice = createApi({
         };
       },
     }),
+
     signup: builder.mutation({
       query(body) {
         return {
@@ -34,4 +36,4 @@ export const authSlice = createApi({
 });
 
 // Export hooks for usage in functional components
-export const { useLoginMutation, useSignupMutation , useLazyLogoutQuery } = authSlice;
+export const { useLoginMutation, useSignupMutation , useLazyLogoutQuery} = authSlice;

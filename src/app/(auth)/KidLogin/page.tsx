@@ -1,29 +1,28 @@
 "use client";
-import { useLoginMutation } from "@/lib/redux/api/authApi";
+import { useKidLoginMutation } from "@/lib/redux/api/kidApi";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const LoginPage = () => {
   const router = useRouter();
-  const [signup] = useLoginMutation();
+  const [loginKid] = useKidLoginMutation();
 
   const [formData, setFormData] = useState({
-    email: "",
+    username: "",
     password: "",
-    remember: false,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: value,
     }));
   };
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    signup(formData)
+    loginKid(formData)
       .unwrap()
       .then((res) => {
         if (res?.status == 200) {
@@ -49,18 +48,18 @@ const LoginPage = () => {
 
       {/* Right: Login Form */}
       <div className="lg:p-36 md:p-52 sm:p-20 p-8 w-full lg:w-1/2">
-        <h1 className="text-2xl font-semibold mb-4">Login As A Parent</h1>
+        <h1 className="text-2xl font-semibold mb-4">Login As A Kid</h1>
         <form onSubmit={handleSubmit}>
           {/* email Input */}
           <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-600">
-              email
+            <label htmlFor="username" className="block text-gray-600">
+              Username
             </label>
             <input
               type="text"
-              id="email"
-              name="email"
-              value={formData.email}
+              id="username"
+              name="username"
+              value={formData.username}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
               autoComplete="off"
@@ -83,28 +82,6 @@ const LoginPage = () => {
             />
           </div>
 
-          {/* Remember Me Checkbox */}
-          <div className="mb-4 flex items-center">
-            <input
-              type="checkbox"
-              id="remember"
-              name="remember"
-              checked={formData.remember}
-              onChange={handleChange}
-              className="text-red-500"
-            />
-            <label htmlFor="remember" className="text-green-900 ml-2">
-              Remember Me
-            </label>
-          </div>
-
-          {/* Forgot Password Link */}
-          <div className="mb-6 text-blue-500">
-            <a href="#" className="hover:underline">
-              Forgot Password?
-            </a>
-          </div>
-
           {/* Login Button */}
           <button
             type="submit"
@@ -114,22 +91,12 @@ const LoginPage = () => {
           </button>
         </form>
 
-        {/* Sign up Link */}
         <div className="mt-6 text-green-500 text-center">
           <p
-            onClick={() => router.push("/signup")}
+            onClick={() => router.push("/")}
             className="hover:underline cursor-pointer"
           >
-            Sign up Here
-          </p>
-        </div>
-
-        <div className="mt-6 text-green-500 text-center">
-          <p
-            onClick={() => router.push("/KidLogin")}
-            className="hover:underline cursor-pointer"
-          >
-            Kid Login
+            Parent Login
           </p>
         </div>
       </div>
